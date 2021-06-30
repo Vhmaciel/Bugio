@@ -1,7 +1,6 @@
 #include <iostream>
 #include <string>
 #include "cell.h"
-#include "transistor.h"
 
 
 class Kernel {
