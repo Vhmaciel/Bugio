@@ -1,10 +1,15 @@
-#include <iostream>
+//Headers
+#include "cell.h"
+//Libs
 #include <fstream>
 #include <experimental/filesystem> //C++ 17
-#include <string>
-#include "cell.h"
-namespace fs = std::experimental::filesystem;
+#include <signal.h> 
+#include <unistd.h>
 
+namespace fs = std::experimental::filesystem;
+int teste = 1;
+
+void signalHandler(sig_atomic_t);
 
 class Kernel {
 

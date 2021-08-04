@@ -23,3 +23,11 @@ class Cell {
 
 
 };
+
+class Lib {
+
+	private:
+		std::string name;
+		std::vector<Cell> cell;
+		
+};
