@@ -1,3 +1,6 @@
+#ifndef _H_CELL
+#define _H_CELL
+
 #include <iostream>
 #include <string>
 #include <vector>
@@ -31,3 +34,5 @@ class Lib {
 		std::vector<Cell> cell;
 		
 };
+
+#endif

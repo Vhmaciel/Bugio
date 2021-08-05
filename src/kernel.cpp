@@ -3,17 +3,12 @@
 
 
 
-void signalHandler(sig_atomic_t signal){
-    teste = 0;
-};
-
-
-void Kernel::readSpice(fs::path filePath){
+void Kernel::readSpice(std::string filePath){
 
     std::ifstream spiceFile;
     std::string line, extension;
 
-    extension = filePath.extension();   //get file extension
+    extension = fs::path(filePath).extension();   //get file extension
 
     try{    //test if file extension is valid
         if(extension == ".sp" || extension == ".cir" || extension == ".spc" || extension == ".spi" || extension == ".sps" || extension == ".inc" || extension == ".lib"){

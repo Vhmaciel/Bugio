@@ -1,21 +1,24 @@
 CCPP= g++
 CC= gcc
-CCFLAGS= -Wall -W
-LIBS= -L/usr/lib -lrt
+CCFLAGS= -Wall -W -pedantic -std=c++17
+LIBS= -L/usr/lib -lrt -lstdc++fs
 THREADLIB= -pthread
 SRC= src/
 OBJ= cell.o kernel.o
 
-all: init main
+all: init bugio
 
-main: $(SRC)main.cpp kernel.o
-	$(CCPP) $(SRC)main.cpp obj/kernel.o -o bin/Bugio $(LIBS) $(THREADLIB) $(CCFLAGS)
+bugio: main.o kernel.o
+	$(CCPP) obj/main.o obj/kernel.o -o bin/Bugio
 
-kernel.o: $(SRC)kernel.cpp $(SRC)kernel.h cell.o
-	$(CCPP) $(SRC)kernel.cpp obj/cell.o -o obj/kernel.o -c $(CCFLAGS) $(LIBS) $(THREADLIB)
+main.o: $(SRC)main.cpp $(SRC)kernel.h
+	$(CCPP) $(SRC)main.cpp -o obj/main.o -c $(THREADLIB) $(CCFLAGS) $(LIBS)
+
+kernel.o: $(SRC)kernel.cpp $(SRC)kernel.h $(SRC)cell.h
+	$(CCPP) $(SRC)kernel.cpp -o obj/kernel.o -c $(CCFLAGS) $(THREADLIB) $(LIBS)
 
 cell.o: $(SRC)cell.cpp $(SRC)cell.h
-	$(CCPP) $(SRC)cell.cpp -o obj/cell.o -c $(CCFLAGS) $(LIBS) $(THREADLIB)
+	$(CCPP) $(SRC)cell.cpp -o obj/cell.o -c $(CCFLAGS)
 
 clean:
 	rm -f obj/*.o $(OBJ) bin/*
