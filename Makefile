@@ -21,7 +21,7 @@ cell.o: $(SRC)cell.cpp $(SRC)cell.h
 	$(CCPP) $(SRC)cell.cpp -o obj/cell.o -c $(CCFLAGS)
 
 clean:
-	rm -f obj/*.o $(OBJ) bin/*
+	rm -rf obj $(OBJ) bin
 
 init:
 	mkdir -p bin obj
