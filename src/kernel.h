@@ -21,6 +21,7 @@ namespace fs = std::filesystem;
 class Kernel {
 
     public:
+        std::string StringToUpper(std::string strToConvert);
         void readSpice(std::string filePath);
 
     private:

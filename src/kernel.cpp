@@ -9,7 +9,7 @@ void Kernel::readSpice(std::string filePath){
 
     std::ifstream spiceFile;
     std::string line, extension;
-	const bool reading_cadence;
+	const bool reading_cadence = 0;
 	int lineNr = 0;
 
 	Cell subcktCell,topCell;
@@ -26,8 +26,8 @@ void Kernel::readSpice(std::string filePath){
                 throw NO_FILE_ER;
     		}
 
-			string<vector> wordsVector;
-			string word;
+			std::vector<std::string> wordsVector;
+			std::string word;
 
     		while(spiceFile){
 				
@@ -37,10 +37,10 @@ void Kernel::readSpice(std::string filePath){
 				
 				wordsVector.clear();
 
-				istringstream cline(line.c_str());
+				std::istringstream cline(line.c_str());
             
              	while (cline>>word)
-                 	wordsVector.push_back(upcase(word));
+                 	wordsVector.push_back(StringToUpper(word));
 
 				if (wordsVector[0] == "*INTERFACE")
 				{
@@ -63,7 +63,7 @@ void Kernel::readSpice(std::string filePath){
 							//orient = W;
 							break;
 						default:
-							throw (INTERFACE_ER);
+							throw (INTERFACE_OR_ER);
 						}
 						switch (wordsVector[3][0])
 						{
@@ -74,7 +74,7 @@ void Kernel::readSpice(std::string filePath){
 							//type = IOTYPE_OUTPUT;
 							break;
 						default:
-							throw INTERFACE_TYPE_ER/
+							throw INTERFACE_TYPE_ER;
 						}
 						//topCell.insertInOut(wordsVector[1]);
 						//netlist.insertInterface(wordsVector[1], orient, type, 0, 0);
@@ -121,4 +121,12 @@ void Kernel::readSpice(std::string filePath){
     spiceFile.close();
 
 
+}
+
+
+std::string StringToUpper(std::string strToConvert)
+{
+    std::transform(strToConvert.begin(), strToConvert.end(), strToConvert.begin(), ::toupper);
+
+    return strToConvert;
 }
