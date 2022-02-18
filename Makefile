@@ -24,7 +24,7 @@ domino: $(SRC)domino.cpp
 	$(CCPP) $(SRC)domino.cpp -o bin/domino $(CCFLAGS)
 
 clean:
-	rm -f obj/*.o $(OBJ) bin/*
+	rm -rf obj $(OBJ) bin
 
 init:
 	mkdir -p bin obj

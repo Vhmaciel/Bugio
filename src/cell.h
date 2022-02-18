@@ -19,6 +19,8 @@ struct Transistor{
 
 class Cell {
 
+	public:
+		void clear();
 
 	private:
 		std::string cellName; 
