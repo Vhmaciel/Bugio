@@ -10,7 +10,7 @@ all: init bugio
 
 bugio: main.o kernel.o
 	$(CCPP) obj/main.o obj/kernel.o -o bin/Bugio
-
+ 
 main.o: $(SRC)main.cpp $(SRC)kernel.h
 	$(CCPP) $(SRC)main.cpp -o obj/main.o -c $(THREADLIB) $(CCFLAGS) $(LIBS)
 
@@ -21,7 +21,7 @@ cell.o: $(SRC)cell.cpp $(SRC)cell.h
 	$(CCPP) $(SRC)cell.cpp -o obj/cell.o -c $(CCFLAGS)
 
 domino: $(SRC)domino.cpp
-	$(CCPP) $(SRC)domino.cpp -o bin/domino $(CCFLAGS)
+	$(CCPP) $(SRC)domino.cpp -o bin/domino $(CCFLAGS) third_party/libz3.so -I..third_party/src/api -I..third_party/src/api/c++
 
 clean:
 	rm -rf obj $(OBJ) bin
